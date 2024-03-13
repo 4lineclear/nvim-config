@@ -1,42 +1,28 @@
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
+--      [[ Basic Keymaps ]]
+--      See `:help vim.keymap.set()`
 
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+--      NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
-local function mapper(mode, lhs, rhs, opts) 
-  if opts then
-    return function(...)
-      vim.keymap.set(mode, lhs, rhs, opts, ...)
-    end
-  end
-  if rhs then
-    return function(...)
-      vim.keymap.set(mode, lhs, rhs, ...)
-    end
-  end
-  if lhs then
-    return function(...)
-      vim.keymap.set(mode, lhs, ...)
-    end
-  end
-  if mode then
-    return function(...)
-      vim.keymap.set(mode, ...)
-    end
-  end
-  return function(...)
-      vim.keymap.set(...)
-  end
-end
+--      Reduce boilerplate
+local Utils = require("utils")
+local nmap = Utils.nmap
+local tmap = Utils.tmap
 
--- Utility function
-local nmap = mapper("n");
-local tmap = mapper("t");
+--      Utils for buffers
+nmap("<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+nmap("<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+nmap("<leader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
 
--- Diagnostic keymaps
+--      Yank to system clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+nmap("<leader>Y", [["+Y]])
+--      Paste to system clipboard
+vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
+nmap("<leader>P", [["+P]])
 
+--      Diagnostic keymaps
 nmap(
   "[d",
   vim.diagnostic.goto_prev,
@@ -58,26 +44,30 @@ nmap(
   { desc = "Open diagnostic [Q]uickfix list" }
 )
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
-tmap(
-  "<Esc><Esc>",
-  "<C-\\><C-n>",
-  { desc = "Exit terminal mode" }
-)
-
+--      Training wheels
 nmap("<left>", '<cmd>echo "Use h to move!!"<CR>')
 nmap("<right>", '<cmd>echo "Use l to move!!"<CR>')
 nmap("<up>", '<cmd>echo "Use k to move!!"<CR>')
 nmap("<down>", '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
-local function mapWMove(d, dName)
-  local key = "<C-" .. d .. ">"
-  local opts = { desc = "Move focus to the " .. dName .. " window" }
-  nmap(key, "<C-w>" .. key, opts)
-end
+--      Navigate panes
+nmap("<C-h>", "<C-w><C-h>", { desc = "left" })
+nmap("<C-l>", "<C-w><C-l>", { desc = "right" })
+nmap("<C-j>", "<C-w><C-j>", { desc = "lower" })
+nmap("<C-k>", "<C-w><C-k>", { desc = "upper" })
+--      Resize panes
+nmap("<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+nmap("<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+nmap(
+  "<C-Left>",
+  "<cmd>vertical resize -2<cr>",
+  { desc = "Decrease window width" }
+)
+nmap(
+  "<C-Right>",
+  "<cmd>vertical resize +2<cr>",
+  { desc = "Increase window width" }
+)
 
-mapWMove("h", "left")
-mapWMove("l", "right")
-mapWMove("j", "lower")
-mapWMove("k", "upper")
+--      Lazy
+nmap("<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })

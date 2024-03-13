@@ -1,16 +1,12 @@
---      [[ Setting options ]]
+--      [[ Settings options ]]
 --      See `:help vim.opt`
 
+vim.api.nvim_set_var("mapleader", " ")
 vim.g.have_nerd_font = true
+vim.opt.termguicolors = true
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
-
---      4 width tabs
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
 
 --      detect indent
 vim.opt.smartindent = true
@@ -19,9 +15,8 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.mouse = "a"
-vim.opt.showmode = false
-vim.opt.clipboard = "unnamedplus"
 
+-- Wrapped text will continue at same indent
 vim.opt.breakindent = true
 
 --      maybe change
@@ -39,10 +34,6 @@ vim.opt.ttimeout = false
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-
---      easily see line indent
-vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 --      some autocomplete
 vim.opt.inccommand = "split"
