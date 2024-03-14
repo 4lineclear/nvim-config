@@ -4,14 +4,14 @@ return {
   dependencies = { { "nvim-tree/nvim-web-devicons" } },
   opts = function()
     local logo = [[
-██\   ██\ ██\       ██████\        ██\    ██\ ██████\ ██\      ██\ 
-██ |  ██ |██ |     ██  __██\       ██ |   ██ |\_██  _|███\    ███ |
-██ |  ██ |██ |     ██ /  \__|      ██ |   ██ |  ██ |  ████\  ████ |
-████████ |██ |     ██ |            \██\  ██  |  ██ |  ██\██\██ ██ |
-\_____██ |██ |     ██ |             \██\██  /   ██ |  ██ \███  ██ |
-      ██ |██ |     ██ |  ██\         \███  /    ██ |  ██ |\█  /██ |
-      ██ |████████\\██████  |         \█  /   ██████\ ██ | \_/ ██ |
-      \__|\________|\______/           \_/    \______|\__|     \__|
+██╲   ██╲ ██╲       ▟████▙╲  ██╲    ██╲ ██████╲ █▙╲      ▟█╲ 
+██ │  ██ │██ │     ██▛ _▜█▙╲ ██ │   ██ │╲_██  _│██▙╲    ▟██ │
+██ │  ██ │██ │     ██ ╱  ╲__│██ │   ██ │  ██ │  ███▙╲  ▟███ │
+████████ │██ │     ██ │      ▜█▙╲  ▟█▛ │  ██ │  ██▜█▙╲▟█▛██ │
+╲_____██ │██ │     ██ │       ▜█▙╲▟█▛ ╱   ██ │  ██ ▜███▛ ██ │
+      ██ │██ │     ██▙│ ▟██╲   ▜███▛ ╱    ██ │  ██ │▜█▛ ╱██ │
+      ██ │████████╲╲▜████▛  │   ▜█▛ ╱   ██████╲ ██ │ ╲_╱ ██ │
+      ╲__│╲________│╲______╱     ╲_╱    ╲______│╲__│     ╲__│
 ]]
     logo = string.rep("\n", 8) .. logo .. "\n\n"
 
@@ -26,45 +26,29 @@ return {
         header = vim.split(logo, "\n"),
         center = {
           {
-            action = "Telescope "
-              .. (function()
-                if
-                  vim.loop.fs_stat((vim.loop.cwd()) .. "/.git")
-                  and not vim.loop.fs_stat((vim.loop.cwd()) .. "/.ignore")
-                  and not vim.loop.fs_stat((vim.loop.cwd()) .. "/.rgignore")
-                then
-                  return "git_files"
-                else
-                  return "find_files"
-                end
-              end)(),
-            desc = " Find file",
-            icon = " ",
+            action = "Neotree position=current",
+            desc = " Neotree",
+            icon = "󰔱 ",
             key = "f",
           },
           {
-            action = "ene | startinsert",
-            desc = " New file",
-            icon = " ",
-            key = "n",
-          },
-          {
-            action = "Telescope oldfiles",
-            desc = " Recent files",
-            icon = " ",
-            key = "r",
-          },
-          {
-            action = "Telescope live_grep",
-            desc = " Find text",
-            icon = " ",
-            key = "g",
+            action = "Oil",
+            desc = " Oil",
+            icon = "󰼙 ",
+            key = "o",
           },
           {
             action = "Lazy",
             desc = " Lazy",
             icon = "󰒲 ",
             key = "l",
+          },
+          {
+            action = "e ~/.config/nvim/lua/config/set.lua |"
+              .. "e ~/.config/nvim/lua/config/remaps.lua |",
+            desc = " Config",
+            icon = " ",
+            key = "c",
           },
           {
             action = "qa",
