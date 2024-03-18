@@ -14,6 +14,8 @@ return { -- Highlight, edit, and navigate code
         "markdown",
         "vim",
         "vimdoc",
+        "typescript",
+        "tsx",
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

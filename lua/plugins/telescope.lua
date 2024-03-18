@@ -36,11 +36,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
     })
     local Utils = require("utils")
     local nmap = Utils.nmap
-    -- local tmap = Utils.tmap
 
     -- Enable telescope extensions, if they are installed
     pcall(require("telescope").load_extension, "fzf")
     pcall(require("telescope").load_extension, "ui-select")
+
     -- See `:help telescope.builtin`
     local builtin = require("telescope.builtin")
     local nlmap = function(keys, bi, dc)
@@ -79,5 +79,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
     nmap("<leader>sn", function()
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "[S]earch [N]eovim files" })
+    -- Search home dir
+    nmap("<leader>se", function()
+      builtin.find_files({ cwd = "~" })
+    end, { desc = "[S]earch Hom[e]" })
+    -- Search project dir
+    nmap("<leader>sp", function()
+      builtin.find_files({ cwd = "~/project_files/" })
+    end, { desc = "[S]earch [P]roject Files" })
   end,
 }

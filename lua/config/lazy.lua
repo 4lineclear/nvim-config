@@ -35,4 +35,8 @@ require("lazy").setup({ { import = "plugins" } }, {
       lazy = "💤 ",
     },
   },
+  dev = {
+    path = "~/project_files/plugins/",
+    patterns = { "4lineclear" },
+  },
 })

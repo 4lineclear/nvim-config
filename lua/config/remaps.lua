@@ -8,7 +8,6 @@ vim.g.maplocalleader = "\\"
 --      Reduce boilerplate
 local Utils = require("utils")
 local nmap = Utils.nmap
-local tmap = Utils.tmap
 
 --      Utils for buffers
 nmap("<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })

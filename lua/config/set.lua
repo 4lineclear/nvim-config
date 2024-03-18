@@ -1,12 +1,17 @@
 --      [[ Settings options ]]
 --      See `:help vim.opt`
 
-vim.api.nvim_set_var("mapleader", " ")
 vim.g.have_nerd_font = true
 vim.opt.termguicolors = true
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
+
+-- --      4 width tab default
+-- vim.opt.tabstop = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 4
+-- vim.opt.expandtab = true
 
 --      detect indent
 vim.opt.smartindent = true
