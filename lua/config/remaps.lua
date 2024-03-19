@@ -9,6 +9,14 @@ vim.g.maplocalleader = "\\"
 local Utils = require("utils")
 local nmap = Utils.nmap
 
+nmap(
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / clear hlsearch / diff update" }
+)
+nmap("<leader>uh", function()
+  vim.lsp.inlay_hint.enable(nil, vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle Inlay Hints" })
 --      Utils for buffers
 nmap("<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 nmap("<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })

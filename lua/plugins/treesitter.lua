@@ -16,6 +16,7 @@ return { -- Highlight, edit, and navigate code
         "vimdoc",
         "typescript",
         "tsx",
+        "rust",
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

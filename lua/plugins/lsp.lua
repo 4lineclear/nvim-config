@@ -97,6 +97,9 @@ return { -- LSP Configuration & Plugins
         --
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+        -- vim.lsp.inlay_hint.enable()
+
         if client and client.server_capabilities.documentHighlightProvider then
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = event.buf,
@@ -135,7 +138,61 @@ return { -- LSP Configuration & Plugins
       -- clangd = {},
       -- gopls = {},
       -- pyright = {},
-      -- rust_analyzer = {},
+      -- rust_analyzer = {
+      --   settings = {
+      --     ["rust-analyzer"] = {
+      --       imports = {
+      --         granularity = {
+      --           group = "module",
+      --         },
+      --         prefix = "self",
+      --       },
+      --       cargo = {
+      --         buildScripts = {
+      --           enable = true,
+      --         },
+      --       },
+      --       procMacro = {
+      --         enable = true,
+      --       },
+      --       diagnostics = {
+      --         enable = true,
+      --       },
+      --       inlayHints = {
+      --         bindingModeHints = {
+      --           enable = false,
+      --         },
+      --         chainingHints = {
+      --           enable = true,
+      --         },
+      --         closingBraceHints = {
+      --           enable = true,
+      --           minLines = 25,
+      --         },
+      --         closureReturnTypeHints = {
+      --           enable = "never",
+      --         },
+      --         lifetimeElisionHints = {
+      --           enable = "never",
+      --           useParameterNames = false,
+      --         },
+      --         maxLength = 25,
+      --         parameterHints = {
+      --           enable = true,
+      --         },
+      --         reborrowHints = {
+      --           enable = "never",
+      --         },
+      --         renderColons = true,
+      --         typeHints = {
+      --           enable = true,
+      --           hideClosureInitialization = false,
+      --           hideNamedConstructor = false,
+      --         },
+      --       },
+      --     },
+      --   },
+      -- },
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
       -- Some languages (like typescript) have entire language plugins that can be useful:
