@@ -7,7 +7,7 @@ vim.opt.termguicolors = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
--- --      4 width tab default
+--      4 width tab default
 -- vim.opt.tabstop = 4
 -- vim.opt.softtabstop = 4
 -- vim.opt.shiftwidth = 4
@@ -47,3 +47,15 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
+
+--      for autosession
+vim.o.sessionoptions =
+  "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
+
+-- Adding cbnf file support
+vim.filetype.add({ extension = { cbnf = "cbnf" } })
+-- Adding basm file support
+vim.filetype.add({ extension = { basm = "basm" } })

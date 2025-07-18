@@ -1,4 +1,7 @@
 # Nvim Config
 
 My NeoVim config.  
-Currently Empty
+
+## Other plugins that I should maybe use
+
+- Codeium
